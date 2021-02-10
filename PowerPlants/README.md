@@ -1,0 +1,1 @@
+﻿PowerPlants project uses .net framework 5. To build and run it .NET 5 SDK must be installed.
