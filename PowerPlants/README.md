@@ -1,6 +1,7 @@
 ﻿PowerPlants project uses .net framework 5. To build and run it .NET 5 SDK must be installed.
 
 It is a testing exercise/proof of concept therefore not all approaches here are directly suitable for production code. Error processing, for example, is practically missing.
+No input validation.
 
 The calculation logic is placed directly to PowerPlantController.cs. Not for production code but ok for a proof of concept.
 
