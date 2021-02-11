@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json.Serialization;
 
 namespace PowerPlants.Model
 {
@@ -7,25 +7,25 @@ namespace PowerPlants.Model
         /// <summary>
         /// Gas price eur/MWh.
         /// </summary>
-        [ModelBinder(Name = "gas(euro/MWh)")]
+        [JsonPropertyName("gas(euro/MWh)")]
         public decimal GasPrice { get; set; }
 
         /// <summary>
         /// Kerosine price eur/MWh.
         /// </summary>
-        [ModelBinder(Name = "kerosine(euro/MWh)")]
+        [JsonPropertyName("kerosine(euro/MWh)")]
         public decimal KerosinePrice { get; set; }
 
         /// <summary>
         /// CO2 price eur/ton.
         /// </summary>
-        [ModelBinder(Name = "co2(euro/ton)")]
+        [JsonPropertyName("co2(euro/ton)")]
         public decimal CO2Price { get; set; }
 
         /// <summary>
         /// Wind availability (?).
         /// </summary>
-        [ModelBinder(Name = "wind(%)")]
+        [JsonPropertyName("wind(%)")]
         public decimal WindPerc { get; set; }
     }
 
