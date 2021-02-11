@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PowerPlants.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace PowerPlants.Controllers
         public PowerPlantsController(ILogger<PowerPlantsController> logger)
         {
             _logger = logger;
+        }
+
+        [HttpPost("productionplan")]
+        public ActionResult<PowerPlantsResponse> CalculateProductionPlan([FromBody] PowerPlantsRequest request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

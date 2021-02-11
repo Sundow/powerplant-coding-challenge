@@ -1,11 +1,27 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="payload1.json" />
+    <Content Remove="payload2.json" />
+    <Content Remove="payload3.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\example_payloads\payload1.json" Link="ExamplePayloads\payload1.json" />
+    <None Include="..\example_payloads\payload2.json" Link="ExamplePayloads\payload2.json" />
+    <None Include="..\example_payloads\payload3.json" Link="ExamplePayloads\payload3.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ExamplePayloads\" />
   </ItemGroup>
 
 </Project>
