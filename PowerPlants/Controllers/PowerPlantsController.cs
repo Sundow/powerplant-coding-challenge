@@ -40,8 +40,12 @@ namespace PowerPlants.Controllers
                     Power = plant.PMin
                 };
 
+                // Currently production coefficient is only applicable to wind turbines (for which PMin is always 0). For other types it is always 1.
+                // To be amended if it ever can affect PMin.
+                decimal productionCoefficient = CurrentProductionCoefficient(plant, request.Fuels);
+
                 // what extra can a power plant generate above its minimum?
-                decimal plantExtra = Math.Min(generateAboveMin, plant.PMax - plant.PMin);
+                decimal plantExtra = Math.Min(generateAboveMin, (plant.PMax - plant.PMin) * productionCoefficient);
 
                 plantLoad.Power += plantExtra;
                 generateAboveMin -= plantExtra;
@@ -61,12 +65,20 @@ namespace PowerPlants.Controllers
             {
                 "gasfired" => fuels.GasPrice,
                 "turbojet" => fuels.KerosinePrice,
-                "windturbine" => 0m, // What is the weather? Windturbines are not always available.
+                "windturbine" => 0m,
                 _ => throw new ArgumentException("Unknown power plant type."),
             };
 
             // TODO: add CO2 price or whatever else to the formula.
             return fuelPrice / plant.Efficiency;
+        }
+
+        /// <summary>
+        /// Calculates current production coeeficient between 0 and 1. For wind turbines it depends on a wind, for other kinds of plants always 1.
+        /// </summary>
+        private static decimal CurrentProductionCoefficient(PowerPlant plant, Fuels fuels)
+        {
+            return plant.Type == "windturbine" ? fuels.WindPerc / 100m : 1m;
         }
     }
 }
